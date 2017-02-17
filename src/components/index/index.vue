@@ -33,7 +33,7 @@
 		components: {
 			loading
 		},
-		created(){
+		created(){ 
 			this.$http.get('http://localhost:2016/seller').then((res) => {
 				this.seller = res.body.result;
 
@@ -42,6 +42,14 @@
 				},1000);
 
 			});
+		},
+		route: {
+			deactivate(transition) {
+				this.loading = true;
+				setTimeout(() => {
+					transition.next();
+				},3000);
+			}
 		}
 	}
 </script>
